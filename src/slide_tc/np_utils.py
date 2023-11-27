@@ -1,11 +1,9 @@
+import io
 import typing as t
 
 import numpy as np
 from numpy.fft import fft2, ifft2
 from PIL import Image as image
-
-from ..pil_utils import frombytes as pil_frombytes
-from ..pil_utils import tobytes as pil_tobytes
 
 if t.TYPE_CHECKING:
     mat_u1 = np.ndarray[t.Any, np.dtype[np.uint8]]
@@ -27,6 +25,16 @@ __all__ = [
     "energy_mask",
     "sdiff_mask_match",
 ]
+
+
+def pil_frombytes(b: bytes) -> image.Image:
+    return image.open(io.BytesIO(b))
+
+
+def pil_tobytes(img: image.Image, format="png") -> bytes:
+    buf = io.BytesIO()
+    img.save(buf, format)
+    return buf.getvalue()
 
 
 def frombytes(b: bytes, dtype=np.uint8) -> mat_u1:

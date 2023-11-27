@@ -6,9 +6,12 @@ import pytest
 import pytest_asyncio
 from qqqr.up import UpH5Login
 from qqqr.up.captcha import Captcha
-from qqqr.up.captcha.slide import *
+from qqqr.up.captcha.slide import SlideCaptchaSession
+
+from slide_tc import *
 
 if TYPE_CHECKING:
+    from qqqr.up.web import UpWebSession
     from qqqr.utils.net import ClientAdapter
 
     from tests.conftest import test_env
@@ -21,16 +24,21 @@ async def login(client: ClientAdapter, env: test_env):
 
 
 @pytest_asyncio.fixture(scope="module")
-async def captcha(login: UpH5Login):
+async def upsess(login: UpH5Login):
     upsess = await login.new()
     await login.check(upsess)
-    captcha = login.captcha_solver(upsess.check_rst.session)
-    yield captcha
+    yield upsess
 
 
 @pytest_asyncio.fixture(scope="module")
-async def sess(client: ClientAdapter, captcha: Captcha):
-    sess = await captcha.new()
+async def captcha(login: UpH5Login):
+    login.captcha.solve_slide_captcha.add_impl(solve_slide_captcha)
+    yield login.captcha
+
+
+@pytest_asyncio.fixture(scope="module")
+async def sess(client: ClientAdapter, captcha: Captcha, upsess: UpWebSession):
+    sess = await captcha.new(upsess.sid)
     if not isinstance(sess, SlideCaptchaSession):
         pytest.skip("not a slide captcha")
 
@@ -40,7 +48,9 @@ async def sess(client: ClientAdapter, captcha: Captcha):
 
 @pytest.fixture(scope="module")
 def jigsaw(sess: SlideCaptchaSession):
-    yield sess.get_jigsaw_solver()
+    background, piece = sess.cdn_imgs
+    left, top = sess.piece_sprite.init_pos
+    yield Jigsaw(background, piece, (left, top))
 
 
 class TestPiece:
@@ -63,6 +73,10 @@ class TestPiece:
 def test_solve(jigsaw: Jigsaw):
     left = jigsaw.solve() - jigsaw.piece.padding[0]
     assert left > 0
+
+
+async def test_owner_solve(sess: SlideCaptchaSession):
+    assert await sess.solve_captcha()
 
 
 def test_imitate(sess: SlideCaptchaSession, jigsaw: Jigsaw):
