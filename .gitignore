@@ -1,0 +1,30 @@
+# local config
+.vscode
+.env
+poetry.toml
+package-lock.json
+
+# venv
+/venv
+.venv
+.tox
+node_modules
+
+# cache and tempfiles
+*.pyc
+tmp
+log/
+
+# local data and large files
+/data
+
+# build, metadata and distribution
+/dist
+/build
+*.egg-info
+/doc/source/locale/**/*.mo
+
+# useless documents
+archive
+/doc/*
+!/doc/source
