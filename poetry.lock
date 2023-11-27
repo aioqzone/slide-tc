@@ -98,13 +98,13 @@ speedups = ["Brotli", "aiodns", "brotlicffi"]
 
 [[package]]
 name = "aioqzone"
-version = "1.5.6.dev1"
+version = "1.7.1.dev5"
 description = "A Python wrapper for Qzone login and H5 APIs."
 optional = false
 python-versions = ">=3.8,<4.0"
 files = [
-    {file = "aioqzone-1.5.6.dev1-py3-none-any.whl", hash = "sha256:24ecd3f541026b5b2779e87e10d9ddd1ef06df00913f331aa233d79ba5d645c1"},
-    {file = "aioqzone-1.5.6.dev1.tar.gz", hash = "sha256:11ba2cd50c0558d196022cd665cf2a1eae4c4a1a5bb743160624b55e51414553"},
+    {file = "aioqzone-1.7.1.dev5-py3-none-any.whl", hash = "sha256:571282e87d797811225b7377c5c41dd741f2ee7af3369494bf90b4ea41762dad"},
+    {file = "aioqzone-1.7.1.dev5.tar.gz", hash = "sha256:a98a0e5544634fa25c320c48d9cf085d0c8724a8d283c4b5ce177f2501273684"},
 ]
 
 [package.dependencies]
@@ -112,6 +112,8 @@ aiohttp = ">=3.8.5,<4.0.0"
 cssselect = ">=1.1.0,<2.0.0"
 exceptiongroup = ">=1.1.1,<2.0.0"
 lxml = ">=4.9.1,<5.0.0"
+pillow = ">=10.0.1,<11.0.0"
+pychaosvm = ">=0.3.0,<0.4.0"
 pydantic = ">=2.0.3,<3.0.0"
 pydantic-settings = ">=2.0.2,<3.0.0"
 rsa = ">=4.8,<5.0"
@@ -119,7 +121,7 @@ tenacity = ">=8.2.3,<9.0.0"
 tylisten = ">=2.0.1,<3.0.0"
 
 [package.extras]
-captcha = ["numpy (>=1.22.3,<2.0.0)", "pillow (>=10.0.1,<11.0.0)", "pychaosvm (>=0.3.0,<0.4.0)"]
+captcha = ["slide-tc (>=0.1.0,<0.2.0)"]
 
 [[package]]
 name = "aiosignal"
@@ -821,6 +823,14 @@ files = [
 ]
 
 [[package]]
+name = "pychaosvm"
+version = "0.3.0"
+description = "A Python envirionment for Tencent ChaosVM."
+optional = false
+python-versions = "*"
+files = []
+
+[[package]]
 name = "pydantic"
 version = "2.5.2"
 description = "Data validation using Python type hints"
@@ -1280,4 +1290,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "3fa0f00761d194ea023f97f5c42914a667a96622daffa75e07bb024ea035057a"
+content-hash = "8809a522329d758edc00eda52e38d839e826069d894ac7c368e5c6635f1be484"
