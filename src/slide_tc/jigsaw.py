@@ -11,7 +11,16 @@ from typing import List, Tuple
 import numpy as np
 from PIL import Image as image
 
-from .np_utils import *
+from .np_utils import (
+    energy_mask,
+    frombytes,
+    hdiff_corr_norm_mask_match,
+    mat_i4,
+    mat_u1,
+    sdiff_mask_match,
+    tobytes,
+    vdiff_corr_norm_mask_match,
+)
 
 debug = bool(env.get("AIOQZONE_JIGSAW_DEBUG"))
 
@@ -188,9 +197,7 @@ class Jigsaw:
                     confmap = confidence - self.confidence.min()
                     confmap /= confmap.max() / 255
                     confmap = confmap.astype(np.uint8)
-                    confmap = np.pad(
-                        confmap, ((0, 0), (left_bound, template.shape[1] - 1))
-                    )
+                    confmap = np.pad(confmap, ((0, 0), (left_bound, template.shape[1] - 1)))
                     confmap = np.tile(confmap[:, :, None], (h, 1, 3))
                     return confmap
 

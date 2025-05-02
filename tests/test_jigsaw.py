@@ -8,7 +8,7 @@ from qqqr.up import UpH5Login
 from qqqr.up.captcha import Captcha
 from qqqr.up.captcha.slide import SlideCaptchaSession
 
-from slide_tc import *
+from slide_tc import Jigsaw, imitate_drag, solve_slide_captcha
 
 if TYPE_CHECKING:
     from qqqr.up.web import UpWebSession
@@ -81,7 +81,5 @@ async def test_owner_solve(sess: SlideCaptchaSession):
 
 def test_imitate(sess: SlideCaptchaSession, jigsaw: Jigsaw):
     left = jigsaw.solve() - jigsaw.piece.padding[0]
-    xs, ys = imitate_drag(
-        sess.piece_sprite.init_pos[0], left, sess.piece_sprite.init_pos[1]
-    )
+    xs, ys = imitate_drag(sess.piece_sprite.init_pos[0], left, sess.piece_sprite.init_pos[1])
     assert len(xs) == len(ys)
