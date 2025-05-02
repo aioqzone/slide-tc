@@ -19,7 +19,7 @@ dev = ["pre-commit", "ruff"]
 test = [
     "pytest>=8.2.1",
     "pytest-asyncio~=0.26.0",
-    "aioqzone>=1.9.1.dev3", "pychaosvm", "tylisten"
+    "aioqzone>=1.9.1.dev3", "pychaosvm"
 ]
 
 [tool.uv]
@@ -29,13 +29,8 @@ prerelease = "if-necessary-or-explicit"
 name = "aioqzone-index"
 url = "https://aioqzone.github.io/aioqzone-index/simple/"
 
-[[tool.uv.index]]
-name = "PyPI"
-url = "https://pypi.org/simple/"
-
 [tool.uv.sources]
 pychaosvm = { index = "aioqzone-index" }
-tylisten = { index = "PyPI" }
 
 [build-system]
 requires = ["hatchling"]
