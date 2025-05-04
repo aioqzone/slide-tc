@@ -37,5 +37,5 @@ jobs:
           echo "::endgroup::"
 
           echo "::group::pytest outputs"
-          uv run pytest test
+          uv run pytest tests
           echo "::endgroup::"
