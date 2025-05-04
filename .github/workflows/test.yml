@@ -31,7 +31,8 @@ jobs:
           TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
         run: |
           echo "::group::Install Dependencies"
-          uv sync --group test
+          uv sync --no-default-groups --group test
+          python -c "import qqqr; print(qqqr.__doc__)"
           echo "::endgroup::"
 
           echo "::group::pytest outputs"
