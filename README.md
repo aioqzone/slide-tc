@@ -2,7 +2,7 @@
 
 An aioqzone plugin for solving slide captcha.
 
-[![python](https://img.shields.io/badge/python-3.9%20%7C%203.12-blue)][home]
+[![python](https://img.shields.io/badge/python-3.10%20%7C%203.14-blue)][home]
 [![black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 # Usage
@@ -16,7 +16,7 @@ uplogin.captcha.solve_slide_captcha.add_impl(solve_slide_captcha)
 # License
 
 ```
-Copyright (C) 2022-2023 aioqzone.
+Copyright (C) 2022-2025 aioqzone.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published
